@@ -7,6 +7,7 @@ The main feature is the King Checker, he can move on diagonal lines,
 but if we have jump kill, then we can only move 1 cell further from the target checker.
 
 Multi-jumping feature is present in all types of checkers (standart and King).
+If you can't move, this is means you do invalid move, it can happen if you have jump moves, and you're trying to do single move.
 
 You can check the project!: https://semaff.github.io/checkers/
 
