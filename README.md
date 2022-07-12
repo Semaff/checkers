@@ -1,4 +1,4 @@
-# checkers
+# Сheckers
 Checkers game using React Typescript
 
 New Checkers React project made with React/Typescript ONLY!
