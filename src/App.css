@@ -1,0 +1,139 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    background-color: rgb(39, 0, 60);
+}
+
+.topbar {
+    margin-bottom: 20px;
+}
+
+.board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6);
+
+    width: calc(64px * 8);
+    height: calc(64px * 8);
+}
+
+.cell {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell.black {
+    background-color: rgb(73, 73, 73);
+}
+
+.cell.white {
+    background-color: rgb(189, 189, 189);
+}
+
+.cell.active {
+    background-color: green;
+}
+
+.checker {
+    cursor: pointer;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.4);
+}
+
+.checker.white svg {
+    fill: white;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__inner {
+    padding: 20px;
+    background-color: #fff;
+    color: #000;
+
+    min-width: 280px;
+    text-align: center;
+}
+
+.modal__inner h3 {
+    margin-bottom: 10px;
+}
+
+.btn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 550px) {
+    .cell {
+        width: 48px;
+        height: 48px;
+    }
+
+    .board {
+        width: calc(48px * 8);
+        height: calc(48px * 8);
+    }
+
+    .checker {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cell {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .board {
+        width: calc(38px * 8);
+        height: calc(38px * 8);
+    }
+
+    .checker {
+        width: 28px;
+        height: 28px;
+    }
+}
