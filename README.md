@@ -8,6 +8,8 @@ but if we have jump kill, then we can only move 1 cell further from the target c
 
 Multi-jumping feature is present in all types of checkers (standart and King).
 
+You can check the project!: https://semaff.github.io/checkers/
+
 ![image](https://user-images.githubusercontent.com/95703321/178509858-1038c7b9-0433-4722-a2ab-3ef4531e5bfc.png)
 
 
