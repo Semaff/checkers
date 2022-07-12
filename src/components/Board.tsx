@@ -12,6 +12,7 @@ interface BoardProps {
 
 const Board = memo(({ board, curPlayer, swapPlayer }: BoardProps) => {
     const [selectedCell, setSelectedCell] = useState<CellModel | null>(null);
+    const [isValidMove, setIsValidMove] = useState<boolean>(true);
 
     /*
       Select Cell / Can select cell
@@ -43,7 +44,8 @@ const Board = memo(({ board, curPlayer, swapPlayer }: BoardProps) => {
     const handleMove = (cell: CellModel) => {
         if (selectedCell) {
             if (!board.canMoveChecker(curPlayer, selectedCell, cell.y, cell.x)) {
-                console.log("Illegal move");
+                setIsValidMove(false);
+                setTimeout(() => setIsValidMove(true), 1000);
                 return;
             }
 
@@ -85,6 +87,10 @@ const Board = memo(({ board, curPlayer, swapPlayer }: BoardProps) => {
                     ))}
                 </React.Fragment>
             ))}
+
+            {!isValidMove && (
+                <div className="board__error">This isn't valid move!</div>
+            )}
         </div>
     )
 });
