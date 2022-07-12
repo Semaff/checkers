@@ -4,7 +4,7 @@ Checkers game using React Typescript
 New Checkers React project made with React/Typescript ONLY!
 
 The main feature is the King Checker, he can move on diagonal lines,
-but if we have jump kill, then we can only move only 1 cell further from the target checker.
+but if we have jump kill, then we can only move 1 cell further from the target checker.
 
 Multi-jumping feature is present in all types of checkers (standart and King).
 
