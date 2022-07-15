@@ -35,10 +35,12 @@ export const getKingMoves: TGetKingMovesFunction = (cells, upperY, lowerY, leftX
     moves = getUpperLeftDiagonalMoves(cells, upperY, leftX, cell);
     singles = singles.concat(moves.singles);
     jumps = jumps.concat(moves.jumps);
+    console.log(moves);
 
     moves = getUpperRightDiagonalMoves(cells, upperY, rightX, cell);
     singles = singles.concat(moves.singles);
     jumps = jumps.concat(moves.jumps);
+    console.log(moves);
 
     if (jumps.length > 0) {
         return {
@@ -83,7 +85,7 @@ const getLowerLeftDiagonalMoves: TGetDiagonalMovesFunction = (cells, lowerY, lef
         // If there is enemy cell
         if (cells[y][leftX - dx].checker !== null) {
             // if behind enemy is clear, then we can jump to it
-            if (cells[y + 1][leftX - dx - 1] && cells[y + 1][leftX - dx - 1].checker === null) {
+            if (cells[y + 1]?.[leftX - dx - 1] && cells[y + 1][leftX - dx - 1].checker === null) {
                 singles = [];
                 jumps.push({ y: y + 1, x: leftX - dx - 1 });
             }
@@ -127,7 +129,7 @@ const getLowerRightDiagonalMoves: TGetDiagonalMovesFunction = (cells, lowerY, ri
         // If there is enemy cell
         if (cells[y][rightX + dx].checker !== null) {
             // if behind enemy is clear, then we can jump to it
-            if (cells[y + 1][rightX + dx + 1] && cells[y + 1][rightX + dx + 1].checker === null) {
+            if (cells[y + 1]?.[rightX + dx + 1] && cells[y + 1][rightX + dx + 1].checker === null) {
                 singles = [];
                 jumps.push({ y: y + 1, x: rightX + dx + 1 });
             }
@@ -149,7 +151,7 @@ const getUpperLeftDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, lef
     let jumps: TCellCoords[] = [];
 
     // Lower Left diagonal
-    for (let y = upperY, dx = 0; y > 0; y--) {
+    for (let y = upperY, dx = 0; y >= 0; y--) {
         // if Y and X beyond the board
         if (y >= 8 || y < 0 || leftX - dx >= 8 || leftX - dx < 0) {
             break;
@@ -161,8 +163,7 @@ const getUpperLeftDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, lef
         }
 
         if (cells[y][leftX - dx].checker === null) {
-            singles.push({ y, x: leftX + dx });
-
+            singles.push({ y, x: leftX - dx });
             dx++;
             continue;
         }
@@ -170,7 +171,7 @@ const getUpperLeftDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, lef
         // If there is enemy cell
         if (cells[y][leftX - dx].checker !== null) {
             // if behind enemy is clear, then we can jump to it
-            if (cells[y - 1][leftX - dx - 1] && cells[y - 1][leftX - dx - 1].checker === null) {
+            if (cells[y - 1]?.[leftX - dx - 1] && cells[y - 1][leftX - dx - 1].checker === null) {
                 singles = [];
                 jumps.push({ y: y - 1, x: leftX - dx - 1 });
             }
@@ -192,7 +193,7 @@ const getUpperRightDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, ri
     let jumps: TCellCoords[] = [];
 
     // Upper Right diagonal
-    for (let y = upperY, dx = 0; y > 0; y--) {
+    for (let y = upperY, dx = 0; y >= 0; y--) {
         // if Y and X beyond the board
         if (y >= 8 || y < 0 || rightX + dx >= 8 || rightX + dx < 0) {
             break;
@@ -203,7 +204,7 @@ const getUpperRightDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, ri
             break;
         }
 
-        if (cells[y][rightX - dx].checker === null) {
+        if (cells[y][rightX + dx].checker === null) {
             singles.push({ y, x: rightX + dx });
 
             dx++;
@@ -213,7 +214,7 @@ const getUpperRightDiagonalMoves: TGetDiagonalMovesFunction = (cells, upperY, ri
         // If there is enemy cell
         if (cells[y][rightX + dx].checker !== null) {
             // if behind enemy is clear, then we can jump to it
-            if (cells[y - 1][rightX + dx + 1] && cells[y - 1][rightX + dx + 1].checker === null) {
+            if (cells[y - 1]?.[rightX + dx + 1] && cells[y - 1][rightX + dx + 1].checker === null) {
                 singles = [];
                 jumps.push({ y: y - 1, x: rightX + dx + 1 });
             }
