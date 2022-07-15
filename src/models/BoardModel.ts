@@ -138,11 +138,14 @@ export class BoardModel {
         this.resetHighlights();
 
         // Highlight new cells
+        const allMoves = this.getAllMoves(cell.checker?.player!);
         const moves = this.getMoves(cell);
-        const mixedMoves = [...moves.jumps, ...moves.singles];
-        mixedMoves?.forEach(move => {
-            this.cells[move.y][move.x].available = true;
-        });
+        if ((allMoves.jumps.length > 0 && moves.jumps.length > 0) || (allMoves.jumps.length === 0 && moves.jumps.length === 0)) {
+            const mixedMoves = [...moves.jumps, ...moves.singles];
+            mixedMoves?.forEach(move => {
+                this.cells[move.y][move.x].available = true;
+            });
+        }
     }
 
     public resetHighlights() {
