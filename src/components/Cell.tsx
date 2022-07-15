@@ -10,19 +10,21 @@ interface CellProps {
 }
 
 const Cell = memo(({ cell, isSelected, onClick }: CellProps) => {
+    const classes = ["cell", cell.color];
+    if (isSelected) classes.push("active");
+
     return (
-        <div className={`cell ${cell.color} ${isSelected ? "active" : ""}`} onClick={() => onClick(cell)}>
-            {cell.checker && (!cell.checker.isKing
-                ? (
-                    <div className={`checker ${cell.checker.color}`}>
-                        <CheckerSVG />
-                    </div>
-                )
-                : (
-                    <div className={`checker ${cell.checker.color}`}>
-                        <KingCheckerSVG />
-                    </div>
-                )
+        <div className={classes.join(" ")} onClick={() => onClick(cell)}>
+            {cell.checker && (
+                <div className={`checker ${cell.checker.color}`}>
+                    {!cell.checker?.isKing
+                        ? <CheckerSVG />
+                        : <KingCheckerSVG />
+                    }
+                </div>
+            )}
+            {cell.available && (
+                <div className="indicator" />
             )}
         </div>
     )
