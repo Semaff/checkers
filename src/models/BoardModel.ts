@@ -60,7 +60,7 @@ export class BoardModel {
       and for this cell check it's adjacents and possible jumps
       =========================================================
     */
-    public getAllMoves(player: PlayersEnum): TMoves {        
+    public getAllMoves(player: PlayersEnum): TMoves {
         let moves: TMoves = {
             jumps: [],
             singles: []
@@ -134,6 +134,25 @@ export class BoardModel {
       Helper functions
       ===========================
     */
+    public highlightCells(cell: CellModel) {
+        this.resetHighlights();
+
+        // Highlight new cells
+        const moves = this.getMoves(cell);
+        const mixedMoves = [...moves.jumps, ...moves.singles];
+        mixedMoves?.forEach(move => {
+            this.cells[move.y][move.x].available = true;
+        });
+    }
+
+    public resetHighlights() {
+        this.cells.forEach(row => {
+            row.forEach(cell => {
+                cell.available = false;
+            })
+        })
+    }
+
     public canMoveChecker(player: PlayersEnum, selectedCell: CellModel, cellY: number, cellX: number): boolean {
         let allMoves = this.getAllMoves(player);
         let moves = this.getMoves(selectedCell);

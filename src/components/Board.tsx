@@ -19,11 +19,13 @@ const Board = memo(({ board, curPlayer, swapPlayer }: BoardProps) => {
     */
     const selectCell = (cell: CellModel) => {
         if (cell.x === selectedCell?.x && cell.y === selectedCell?.y) {
+            board.resetHighlights();
             setSelectedCell(null);
             return;
         }
 
         if (canSelectCell(cell)) {
+            board.highlightCells(cell);
             setSelectedCell(cell);
         } else if (selectedCell !== null) {
             handleMove(cell);
@@ -65,8 +67,10 @@ const Board = memo(({ board, curPlayer, swapPlayer }: BoardProps) => {
             }
 
             if (isJump && board.canKeepJumping(cell)) {
+                board.highlightCells(cell);
                 setSelectedCell(cell);
             } else {
+                board.resetHighlights();
                 setSelectedCell(null);
                 swapPlayer();
             }

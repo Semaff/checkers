@@ -6,6 +6,7 @@ export class CellModel {
     y: number;
     color: ColorsEnum;
     checker: CheckerModel | null;
+    available: boolean = false;
 
     constructor(color: ColorsEnum, x: number, y: number) {
         this.color = color;
