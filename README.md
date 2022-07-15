@@ -11,6 +11,8 @@ If you can't move, this is means you do invalid move, it can happen if you have 
 
 You can check the project!: https://semaff.github.io/checkers/
 
+Future Features: Abillity to Undo/Redo, Multiplayer, Play with computer
+
 ![image](https://user-images.githubusercontent.com/95703321/178509858-1038c7b9-0433-4722-a2ab-3ef4531e5bfc.png)
 
 
